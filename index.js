@@ -33,9 +33,7 @@ app.use("/api/upload", productsRouter);
 
 const start = () => {
   try {
-    app.listen(`0.0.0.0:$PORT`, () =>
-      console.log(`Server started on port ${PORT}`)
-    );
+    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
   } catch (e) {
     console.log(e);
   }
