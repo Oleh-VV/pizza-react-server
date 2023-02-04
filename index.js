@@ -8,7 +8,8 @@ import productsRouter from "./routes/productsRoute.js";
 import userRouter from "./routes/userRoute.js";
 
 dotenv.config();
-const PORT = process.env.PORT || 5000;
+const PORT =
+  process.env.PORT || `https://pizza-react-server-production.up.railway.app/`;
 const app = express();
 app.use(express.json()); //передавать объект {extended:true} не нужно??
 mongoose
