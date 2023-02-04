@@ -21,6 +21,9 @@ mongoose
 app.use(cors());
 app.use(cookieParser());
 app.use("/api/seed", seedRouter);
+app.get("/", (req, res) => {
+  console.log("Vashchenko");
+});
 app.use("/api/auth", userRouter);
 app.use("/api/products", productsRouter);
 app.use("/uploads", express.static("uploads")); //модуль path не нужно подключать для определения пути загрузки?
