@@ -9,8 +9,7 @@ import userRouter from "./routes/userRoute.js";
 
 dotenv.config();
 const PORT =
-  process.env.API_URL ||
-  `https://pizza-react-server-production.up.railway.app/`;
+  process.env.PORT || `https://pizza-react-server-production.up.railway.app/`;
 const app = express();
 app.use(express.json()); //передавать объект {extended:true} не нужно??
 mongoose
@@ -30,9 +29,7 @@ app.use("/api/upload", productsRouter);
 
 const start = () => {
   try {
-    app.listen(`0.0.0.0:$PORT`, () =>
-      console.log(`Server started on port ${PORT}`)
-    );
+    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
   } catch (e) {
     console.log(e);
   }
