@@ -21,8 +21,9 @@ mongoose
 app.use(cors());
 app.use(cookieParser());
 app.use("/api/seed", seedRouter);
-app.get("/", (req, res) => {
+app.get("/apiapi", (req, res) => {
   console.log("Vashchenko");
+  res.json("Vashchenko");
 });
 app.use("/api/auth", userRouter);
 app.use("/api/products", productsRouter);
