@@ -10,14 +10,19 @@ import { validationResult } from "express-validator";
 
 export const registration = async (req, res) => {
   try {
+    console.log("req.body");
+    console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty())
       throw ApiError.BadRequest("Validation error", errors.array());
     const isUserExist = await userModel.findOne({ email: req.body.email });
-    if (isUserExist)
+    console.log("isUserExist");
+    console.log(isUserExist);
+    if (isUserExist) {
       throw ApiError.BadRequest(
         `User with email ${req.body.email} is already exists`
       );
+    }
     const salt = await bcrypt.genSalt(5);
     const hash = await bcrypt.hash(req.body.password, salt);
     const activationLink = uuidv4();
@@ -66,13 +71,20 @@ export const registration = async (req, res) => {
 };
 export const login = async (req, res) => {
   try {
+    console.log("req.body");
+    console.log(req.body);
     const errors = validationResult(req);
+    console.log("errors login");
+    console.log(errors);
     if (!errors.isEmpty()) {
       throw ApiError.BadRequest("Validation error", errors.array());
     }
     const user = await userModel.findOne({
       email: req.body.email,
     });
+    console.log("user login");
+    console.log(user);
+
     if (!user) {
       throw ApiError.BadRequest(
         `User with email ${req.body.email} does not exist`
